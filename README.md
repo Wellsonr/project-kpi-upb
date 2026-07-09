@@ -2,6 +2,32 @@
 
 A web-based task tracking application for social media management teams, built with CodeIgniter 3, PHP, MySQL, and Bootstrap 5.
 
+## Catatan untuk Penguji (Database Tidak Publik)
+
+Database project ini di-host lokal/private dan tidak memiliki IP publik, sehingga tidak bisa diakses langsung dari luar jaringan.
+
+**Opsi 1 — Langsung coba lewat web (tidak perlu setup apa pun):**
+
+https://wellson-dev.homantest.my.id
+
+Gunakan akun pada tabel [Pengguna Default](#pengguna-default) untuk login.
+
+**Opsi 2 — Jalankan manual di lokal:**
+
+1. Ikuti langkah [Instalasi](#instalasi) di bawah untuk setup project & `.env`.
+2. Migration dan seeder harus dijalankan sendiri secara manual, berurutan sesuai dependensi tabel:
+   ```bash
+   mysql -u root -p -e "CREATE DATABASE IF NOT EXISTS task_tracker_db"
+   mysql -u root -p task_tracker_db < database/schema.sql
+   mysql -u root -p task_tracker_db < database/migration_rbac.sql
+   mysql -u root -p task_tracker_db < database/migration_features.sql
+   mysql -u root -p task_tracker_db < database/migration_kpi.sql
+   mysql -u root -p task_tracker_db < database/migration_google_calendar.sql
+   mysql -u root -p task_tracker_db < database/seeder.sql
+   ```
+3. Di `.env`, isi `DB_HOSTNAME`, `DB_USERNAME`, `DB_PASSWORD` sesuai environment lokal Anda sendiri. Nama database yang dipakai project ini: `DB_DATABASE=task_tracker_db`.
+4. Untuk `GOOGLE_CLIENT_ID` dan `GOOGLE_CLIENT_SECRET`: nilainya **tidak dipublikasikan** di repo/README ini untuk alasan keamanan. Silakan cek dokumen laporan yang sudah dikirim melalui Google Form.
+
 ## Prasyarat Sistem
 
 - PHP 7.4 atau lebih tinggi
