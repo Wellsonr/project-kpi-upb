@@ -1,0 +1,31 @@
+# CodeIgniter
+/system/
+/vendor/
+
+# Uploads
+/uploads/*
+!/uploads/.gitkeep
+
+# Cache
+/application/cache/
+/application/logs/
+
+# Sessions
+/application/sessions/
+
+# Environment
+.env
+
+# Secrets / DB credentials
+/application/config/database.php
+/application/config/google.php
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
