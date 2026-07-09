@@ -52,7 +52,13 @@ SOURCE database/schema.sql;
 
 ### 3. Konfigurasi
 
-Update kredensial database di `application/config/database.php`:
+Salin `application/config/database.example.php` menjadi `application/config/database.php`,
+lalu isi kredensial database Anda (`database.php` sudah di-gitignore sehingga kredensial asli
+tidak pernah ter-commit):
+
+```bash
+cp application/config/database.example.php application/config/database.php
+```
 
 ```php
 $db['default'] = array(
