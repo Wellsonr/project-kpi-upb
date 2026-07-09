@@ -45,6 +45,24 @@ define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'developm
 
 /*
  *---------------------------------------------------------------
+ * LOAD .env
+ *---------------------------------------------------------------
+ */
+if (is_file(__DIR__.'/.env'))
+{
+    foreach (file(__DIR__.'/.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line)
+    {
+        if ($line[0] === '#' || strpos($line, '=') === FALSE)
+        {
+            continue;
+        }
+        list($key, $value) = explode('=', $line, 2);
+        putenv(trim($key).'='.trim($value));
+    }
+}
+
+/*
+ *---------------------------------------------------------------
  * ERROR REPORTING
  *---------------------------------------------------------------
  */

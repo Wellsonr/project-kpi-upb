@@ -16,10 +16,6 @@
 # Environment
 .env
 
-# Secrets / DB credentials
-/application/config/database.php
-/application/config/google.php
-
 # OS
 .DS_Store
 Thumbs.db

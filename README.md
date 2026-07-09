@@ -52,21 +52,18 @@ SOURCE database/schema.sql;
 
 ### 3. Konfigurasi
 
-Salin `application/config/database.example.php` menjadi `application/config/database.php`,
-lalu isi kredensial database Anda (`database.php` sudah di-gitignore sehingga kredensial asli
-tidak pernah ter-commit):
+Salin `.env.example` menjadi `.env`, lalu isi kredensial database Anda
+(`.env` sudah di-gitignore sehingga kredensial asli tidak pernah ter-commit):
 
 ```bash
-cp application/config/database.example.php application/config/database.php
+cp .env.example .env
 ```
 
-```php
-$db['default'] = array(
-    'hostname' => 'localhost',
-    'username' => 'your_db_user',
-    'password' => 'your_db_password',
-    'database' => 'task_tracker_db',
-);
+```env
+DB_HOSTNAME=localhost
+DB_USERNAME=your_db_user
+DB_PASSWORD=your_db_password
+DB_DATABASE=task_tracker_db
 ```
 
 Update base URL di `application/config/config.php`:
@@ -155,14 +152,10 @@ memerlukan setup satu kali proyek Google Cloud sebelum siapapun dapat menghubung
 4. Buat **OAuth Client ID**: APIs & Services → Credentials → Create
    Credentials → OAuth client ID → Web application. Redirect URI:
    `https://domain-anda/profile/google_callback`.
-5. Buat file `application/config/google.php` berisi **Client ID** dan
-   **Client Secret**:
-   ```php
-   <?php
-   defined('BASEPATH') OR exit('No direct script access allowed');
-
-   $config['google_client_id'] = 'xxxxx.apps.googleusercontent.com';
-   $config['google_client_secret'] = 'xxxxx';
+5. Isi **Client ID** dan **Client Secret** di `.env`:
+   ```env
+   GOOGLE_CLIENT_ID=xxxxx.apps.googleusercontent.com
+   GOOGLE_CLIENT_SECRET=xxxxx
    ```
 6. **Selama aplikasi belum lulus verifikasi Google** (verifikasi bisa
    memakan waktu mingguan untuk "External" consent screen), hanya email yang ditambahkan sebagai
